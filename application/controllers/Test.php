@@ -8,11 +8,9 @@
  */
 class Test extends CI_Controller
 {
-
     public function getItems()
     {
         $data['item']="item 1";
         return $this->load->view('items/items',$data);
     }
-
 }

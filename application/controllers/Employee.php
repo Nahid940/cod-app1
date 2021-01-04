@@ -91,5 +91,4 @@ class Employee extends CI_Controller
         $this->session->set_flashdata('danger-message', 'Employee info removed!!');
         redirect(base_url('employee-index'));
     }
-
 }

@@ -1,8 +1,6 @@
 
 <div class="col-md-6 col-md-offset-3">
-
     <?php echo validation_errors() ?>
-
     <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?php echo base_url('create-employee')?>">
         <div class="form-group">
             <label class="control-label col-sm-3" for="fname">First Name: *</label>
@@ -76,14 +74,12 @@
                 </div>
             </div>
         </div>
-
         <div class="form-group">
             <label class="control-label col-sm-3" for="image">Image:</label>
             <div class="col-sm-9">
                 <input type="file" class="form-control" id="image" name="image">
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-primary pull-right">Submit</button>

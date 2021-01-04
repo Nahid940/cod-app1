@@ -35,7 +35,7 @@
                     <td><?= $emply->age ?></td>
                     <td><?= $emply->gender == 1 ? 'Male' : 'Female' ?></td>
                     <td><img style="height:5%" src="<?= base_url('/uploads/') . $emply->image ?>" alt=""></td>
-                    <td><?= $emply->dob ?></td>
+                    <td><?= date('d-m-Y',strtotime($emply->dob)) ?></td>
                     <td><?php
                         if ($emply->type == 1) {
                             echo "General";
@@ -47,7 +47,7 @@
                         ?>
                     </td>
                     <td>
-                        <!--                    <a href=""><i class="fa fa-edit btn btn-info btn-xs text-info"></i></a>-->
+                        <!--<a href=""><i class="fa fa-edit btn btn-info btn-xs text-info"></i></a>-->
                         <form method="DELETE" action="<?php echo base_url('employee/delete/' . $emply->id); ?>">
                             <a class="btn btn-primary btn-xs" href="<?= base_url('employee/edit/' . $emply->id) ?>">
                                 <i class=" fa fa-edit"></i></a>
