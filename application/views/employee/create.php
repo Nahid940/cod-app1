@@ -63,11 +63,27 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="control-label col-sm-3" for="image">Select Options:</label>
+            <div class="col-sm-9">
+                <div class="checkbox">
+                    <label><input name="options[]" type="checkbox" value="1">Option 1</label>
+                </div>
+                <div class="checkbox">
+                    <label><input  name="options[]" type="checkbox" value="2">Option 2</label>
+                </div>
+                <div class="checkbox">
+                    <label><input name="options[]" type="checkbox" value="3">Option 3</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
             <label class="control-label col-sm-3" for="image">Image:</label>
             <div class="col-sm-9">
                 <input type="file" class="form-control" id="image" name="image">
             </div>
         </div>
+
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-primary pull-right">Submit</button>

@@ -3,6 +3,9 @@
 
     <?php echo validation_errors(); ?>
 
+    <?php
+    $options=explode(',',$employee_info->options);
+    ?>
     <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?php echo base_url('update-employee/'.$employee_info->id)?>">
         <div class="form-group">
             <label class="control-label col-sm-3" for="fname">First Name: *</label>
@@ -71,6 +74,20 @@
                 <input type="file" class="form-control" id="image" value="<?=$employee_info->image?>" name="image">
             </div>
             <input type="hidden" name="old_image" value="<?=$employee_info->image?>">
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="image">Select Options:</label>
+            <div class="col-sm-9">
+                <div class="checkbox">
+                    <label><input name="options[]" <?=in_array('1',$options)?'checked':''?>  type="checkbox" value="1">Option 1</label>
+                </div>
+                <div class="checkbox">
+                    <label><input  name="options[]" <?=in_array('2',$options)?'checked':''?> type="checkbox" value="2">Option 2</label>
+                </div>
+                <div class="checkbox">
+                    <label><input name="options[]" <?=in_array('3',$options)?'checked':''?> type="checkbox" value="3">Option 3</label>
+                </div>
+            </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">

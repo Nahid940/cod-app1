@@ -32,6 +32,7 @@ class Employees extends CI_Model
             'gender'=>$this->input->post('gender'),
             'dob'=>$this->input->post('dob'),
             'image'=>$file,
+            'options'=>implode(',',$this->input->post('options')),
         ];
         $this->db->insert('employees',$data);
     }
@@ -54,6 +55,7 @@ class Employees extends CI_Model
             'gender'=>$this->input->post('gender'),
             'dob'=>$this->input->post('dob'),
             'image'=>$file,
+            'options'=>implode(',',$this->input->post('options')),
         ];
         $this->db->where('id',$id);
         return $this->db->update('employees',$data);
