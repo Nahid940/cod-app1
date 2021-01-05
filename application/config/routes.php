@@ -58,3 +58,9 @@ $route['create-employee']['post']='employee/save';
 $route['employee-delete/(:any)']='employee/delete/$1';
 $route['update-employee/(:any)']['post']='employee/update/$1';
 $route['edit-employee/(:any)']='employee/edit/$1';
+
+
+/*
+ * API
+ * **/
+//$route['employees']='api/get_employees';

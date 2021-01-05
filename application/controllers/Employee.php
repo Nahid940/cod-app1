@@ -8,7 +8,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Employee extends CI_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -82,6 +81,7 @@ class Employee extends CI_Controller
     public function update($id)
     {
         $this->Employees->update($id,"");
+        $this->session->set_flashdata('message', 'Employee info updated!!');
         redirect(base_url('employee-index'));
     }
 
@@ -91,4 +91,8 @@ class Employee extends CI_Controller
         $this->session->set_flashdata('danger-message', 'Employee info removed!!');
         redirect(base_url('employee-index'));
     }
+
+
+
+
 }

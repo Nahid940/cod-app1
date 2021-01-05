@@ -8,12 +8,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class MyController extends CI_Loader
 {
-
 //    public function render_page($view,$data)
 //    {
 //        $this->load->view('includes/header',$data);
 //        $this->load->view($view,$data);
 //        $this->load->view('includes/footer',$data);
 //    }
-
 }

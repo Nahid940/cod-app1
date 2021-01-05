@@ -48,9 +48,9 @@
             <div class="col-sm-9">
                 <select name="type" id="type" class="form-control">
                     <option value="">Select Type</option>
-                    <option value="1"  <?php echo set_select('type', 1, TRUE); ?>>General</option>
-                    <option value="2"  <?php echo set_select('type', 2, TRUE); ?>>Regular</option>
-                    <option value="3"  <?php echo set_select('type', 3, TRUE); ?>>Temporary</option>
+                    <option value="1" <?php echo set_select('type', 1, TRUE); ?>>General</option>
+                    <option value="2" <?php echo set_select('type', 2, TRUE); ?>>Regular</option>
+                    <option value="3" <?php echo set_select('type', 3, TRUE); ?>>Temporary</option>
                 </select>
             </div>
         </div>
@@ -61,7 +61,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-3" for="image">Select Options:</label>
+            <label class="control-label col-sm-3" for="options">Select Options:</label>
             <div class="col-sm-9">
                 <div class="checkbox">
                     <label><input name="options[]" type="checkbox" value="1">Option 1</label>
