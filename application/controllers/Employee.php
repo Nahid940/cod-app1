@@ -17,7 +17,20 @@ class Employee extends CI_Controller
 
     public function index()
     {
+        $redis=new Redis();
+        $redis->connect('127.0.0.1', 6379);
+        $key='employee';
+
         $lists['employees_data']=$this->Employees->getAllEmployees();
+
+        if(!$redis->get('employee'))
+        {
+            $redis->set($key,serialize($lists));
+            $redis->expire($key, 10);
+        }
+
+
+
         $this->load->view('includes/header');
         $this->load->view('employee/index',$lists);
         $this->load->view('includes/footer');

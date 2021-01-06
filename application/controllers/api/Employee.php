@@ -9,6 +9,7 @@ require APPPATH . '/libraries/REST_Controller.php';
 class Employee extends \Restserver\Libraries\REST_Controller
 {
 
+    protected $redis;
     public function __construct($config = 'rest')
     {
         parent::__construct($config);
@@ -16,13 +17,24 @@ class Employee extends \Restserver\Libraries\REST_Controller
         header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
         header("Access-Control-Allow-Headers: Content-Type");
         $this->load->model('Employees');
+        $this->redis=new Redis();
+        $this->redis->connect('127.0.0.1', 6379);
     }
 
     public function index_get($id=0)
     {
         if(empty($id))
         {
-            $data['employees']=$this->Employees->getAllEmployees();
+            if(!$this->redis->get('employees'))
+            {
+                $employees_data=$this->Employees->getAllEmployees();
+                $data['employees']=$employees_data;
+                $this->redis->set('employees',serialize($employees_data),20);
+            }else
+            {
+                $data['employees']=unserialize($this->redis->get('employees'));
+            }
+
         }else
         {
             $data['employee']=$this->Employees->getEmployee($id);

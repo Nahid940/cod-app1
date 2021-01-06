@@ -27,7 +27,22 @@ class Welcome extends CI_Controller {
 
     public function index()
 	{
-        $lists['employees_data']=$this->Employees->getAllEmployees();
+
+        $redis=new Redis();
+        $redis->connect('127.0.0.1', 6379);
+        $key='employee';
+
+        if(!$redis->get('employee'))
+        {
+            $query_data=$this->Employees->getAllEmployees();
+            $lists['employees_data']=$query_data;
+            $redis->set($key,serialize($query_data));
+            $redis->expire($key, 10);
+        }else
+        {
+            $lists['employees_data']=unserialize($redis->get('employee'));
+        }
+//        $lists['employees_data']=$this->Employees->getAllEmployees();
         $this->load->view('includes/header');
         $this->load->view('employee/index',$lists);
         $this->load->view('includes/footer');
