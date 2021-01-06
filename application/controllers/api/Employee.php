@@ -8,7 +8,6 @@ require APPPATH . '/libraries/REST_Controller.php';
  */
 class Employee extends \Restserver\Libraries\REST_Controller
 {
-
     protected $redis;
     public function __construct($config = 'rest')
     {
@@ -34,7 +33,6 @@ class Employee extends \Restserver\Libraries\REST_Controller
             {
                 $data['employees']=unserialize($this->redis->get('employees'));
             }
-
         }else
         {
             $data['employee']=$this->Employees->getEmployee($id);

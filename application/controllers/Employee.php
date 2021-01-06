@@ -29,8 +29,6 @@ class Employee extends CI_Controller
             $redis->expire($key, 10);
         }
 
-
-
         $this->load->view('includes/header');
         $this->load->view('employee/index',$lists);
         $this->load->view('includes/footer');
