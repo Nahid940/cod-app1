@@ -15,7 +15,7 @@ class Employee extends \Restserver\Libraries\REST_Controller
         parent::__construct($config);
         header("Access-Control-Allow-Origin: *");
         header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
-        header("Access-Control-Allow-Headers: Content-Type, Accept");
+        header("Access-Control-Allow-Headers: Content-Type");
         $this->load->model('Employees');
         $this->redis=new Redis();
         $this->redis->connect('127.0.0.1', 6379);
@@ -44,26 +44,29 @@ class Employee extends \Restserver\Libraries\REST_Controller
 
     public function index_post()
     {
-        $config['upload_path']          = './uploads/';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $config['max_size']             = 100;
-        $config['max_width']            = 1024;
-        $config['max_height']           = 768;
-
-        $this->load->library('upload', $config);
-
-        if (!$this->upload->do_upload('image')) {
-            $error = array('error' => $this->upload->display_errors());
-        } else {
-            $data = $this->upload->data();
+        if(isset($_POST['update']) && $_POST['update']==true)
+        {
+            $this->Employees->update($_POST['id'],"");
+        }else if(isset($_POST['del']))
+        {
+            $this->Employees->delete($_POST['id']);
         }
+        else
+        {
+            $config['upload_path']          = './uploads/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 100;
+            $config['max_width']            = 1024;
+            $config['max_height']           = 768;
+            $this->load->library('upload', $config);
 
-        $this->Employees->add_employee($data['file_name']);
-    }
-
-    public function index_put()
-    {
-        $this->Employees->update($_POST['id'],"");
+            if (!$this->upload->do_upload('image')) {
+                $error = array('error' => $this->upload->display_errors());
+            } else {
+                $data = $this->upload->data();
+            }
+            $this->Employees->add_employee($data['file_name']);
+        }
     }
 
 }
