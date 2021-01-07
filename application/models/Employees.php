@@ -67,12 +67,9 @@ class Employees extends CI_Model
 
     public function login()
     {
-
-
         if( $this->input->post('username')!='' &&
             $this->input->post('password')!='')
         {
-
             $username=$this->input->post('username');
             $password=md5($this->input->post('password'));
 

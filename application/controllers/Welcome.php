@@ -29,9 +29,10 @@ class Welcome extends CI_Controller {
 	{
         $redis=new Redis();
         $redis->connect('127.0.0.1', 6379);
-        $key='employee';
+        $redis->auth('mypass123456');
+        $key='employees';
 
-        if(!$redis->get('employee'))
+        if(!$redis->get('employees'))
         {
             $query_data=$this->Employees->getAllEmployees();
             $lists['employees_data']=$query_data;
@@ -39,7 +40,7 @@ class Welcome extends CI_Controller {
             $redis->expire($key, 10);
         }else
         {
-            $lists['employees_data']=unserialize($redis->get('employee'));
+            $lists['employees_data']=unserialize($redis->get('employees'));
         }
 //        $lists['employees_data']=$this->Employees->getAllEmployees();
         $this->load->view('includes/header');

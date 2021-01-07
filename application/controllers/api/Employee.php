@@ -18,6 +18,7 @@ class Employee extends \Restserver\Libraries\REST_Controller
         $this->load->model('Employees');
         $this->redis=new Redis();
         $this->redis->connect('127.0.0.1', 6379);
+        $this->redis->auth('mypass123456');
     }
 
     public function index_get($id=0)
@@ -58,7 +59,7 @@ class Employee extends \Restserver\Libraries\REST_Controller
             $config['max_height']           = 768;
             $this->load->library('upload', $config);
 
-            if (!$this->upload->do_upload('image')) {
+            if (!$this->upload->do_upload('image')){
                 $error = array('error' => $this->upload->display_errors());
             } else {
                 $data = $this->upload->data();
