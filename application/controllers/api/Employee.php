@@ -67,4 +67,9 @@ class Employee extends \Restserver\Libraries\REST_Controller
         }
     }
 
+    public function login_post()
+    {
+        $this->Employees->login();
+    }
+
 }

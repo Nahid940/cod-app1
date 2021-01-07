@@ -65,4 +65,42 @@ class Employees extends CI_Model
         $this->db->delete('employees', array('id' => $id));
     }
 
+    public function login()
+    {
+
+
+        if( $this->input->post('username')!='' &&
+            $this->input->post('password')!='')
+        {
+
+            $username=$this->input->post('username');
+            $password=md5($this->input->post('password'));
+
+            $que=$this->db->query("select * from users where username='$username' and password='$password'");
+            $row = $que->num_rows();
+
+            if($row==1)
+            {
+                $res=$que->result_array();
+                 echo json_encode([
+                    'status'=>200,
+                     'user'=>$res[0]
+                ]);
+            }else
+            {
+                echo json_encode([
+                    'status'=>400,
+                    'message'=>'Invalid username or password !!'
+                ]);
+            }
+        }else{
+            echo json_encode([
+                'status'=>400,
+                'message'=>'Invalid username or password !!'
+            ]);
+        }
+
+
+    }
+
 }
